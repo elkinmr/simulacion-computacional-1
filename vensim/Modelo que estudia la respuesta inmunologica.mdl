@@ -1,0 +1,153 @@
+{UTF-8}
+GLOBULOS BLANCOS  = A FUNCTION OF( fuerza de proliferación,proliferación,tiempo para proliferar los glóbulos blancos\
+		)
+	~	
+	~		|
+
+antígenos por célula extraña=
+	2
+	~	antigenos/celulas extranas
+	~		|
+
+proliferación=
+	10
+	~	globulos blancos/Hour
+	~		|
+
+Destrucción=
+	IF THEN ELSE(CELULAS EXTRAÑAS<0, 0 , GLOBULOS BLANCOS/tiempo para destruir una célula extraña\
+		)
+	~	celulas extranas/Hour
+	~		|
+
+fuerza de proliferación=A FUNCTION OF(fuerza de proliferación,antígenos,fuerza de la respuesta inmunológica\
+		) ~~|
+fuerza de proliferación=
+	fuerza de proliferación*GLOBULOS BLANCOS/tiempo para proliferar los glóbulos blancos
+	~	Dmnl
+	~		|
+
+antígenos=
+	CELULAS EXTRAÑAS * antígenos por célula extraña
+	~	antigenos
+	~		|
+
+CELULAS EXTRAÑAS= INTEG (
+	Destrucción+Multiplicación,
+		100)
+	~	
+	~		|
+
+fuerza de la respuesta inmunológica=
+	1/1000
+	~	Dmnl
+	~		|
+
+Multiplicación  = A FUNCTION OF( CELULAS EXTRAÑAS,tiempo para multiplicar una célula extraña\
+		)
+	~	
+	~		|
+
+tiempo para destruir una célula extraña=
+	1
+	~	Hour*globulos blancos/celulas extrana
+	~		|
+
+tiempo para multiplicar una célula extraña=
+	5
+	~	Hour
+	~		|
+
+tiempo para proliferar los glóbulos blancos=
+	5
+	~	antigenos
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Hour
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 1
+	~	Hour
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Hour [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Hour [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,GLOBULOS BLANCOS,580,189,90,15,3,131,0,0,0,0,0,0
+12,2,48,319,186,10,8,0,3,0,0,-1,0,0,0
+11,3,48,409,186,6,8,2,3,0,0,1,0,0,0
+1,4,3,1,4,0,0,22,0,0,0,-1--1--1,,1|(452,186)|
+1,5,3,2,100,0,0,22,0,0,0,-1--1--1,,1|(366,186)|
+10,6,fuerza de la respuesta inmunológica,313,88,127,19,8,131,0,0,0,0,0,0
+10,7,fuerza de proliferación,160,194,75,10,8,131,0,0,0,0,0,0
+10,8,antígenos por célula extraña,170,257,95,14,8,131,0,0,0,0,0,0
+10,9,tiempo para proliferar los glóbulos blancos,506,287,137,15,8,131,0,0,0,0,0,0
+10,10,antígenos,188,318,30,11,8,3,0,0,0,0,0,0
+10,11,CELULAS EXTRAÑAS,409,411,97,18,3,131,0,0,0,0,0,0
+12,12,48,103,403,10,8,0,3,0,0,-1,0,0,0
+1,13,15,11,4,0,0,22,0,0,0,-1--1--1,,1|(265,403)|
+1,14,15,12,100,0,0,22,0,0,0,-1--1--1,,1|(159,403)|
+11,15,48,212,403,6,8,34,3,0,0,1,0,0,0
+10,16,Multiplicación,212,422,44,11,40,3,0,0,-1,0,0,0
+12,17,48,711,411,10,8,0,3,0,0,-1,0,0,0
+1,18,20,17,4,0,0,22,0,0,0,-1--1--1,,1|(655,411)|
+1,19,20,11,100,0,0,22,0,0,0,-1--1--1,,1|(551,411)|
+11,20,48,603,411,6,8,34,3,0,0,1,0,0,0
+10,21,Destrucción,603,430,38,11,40,3,0,0,-1,0,0,0
+10,22,tiempo para multiplicar una célula extraña,203,539,132,16,8,131,0,0,0,0,0,0
+10,23,tiempo para destruir una célula extraña,539,517,126,14,8,131,0,0,0,0,0,0
+1,24,6,7,1,0,0,0,3,64,0,255-128-192,|12||0-0-0,1|(247,158)|
+1,25,7,3,1,0,0,0,0,64,0,-1--1--1,,1|(305,215)|
+1,26,9,3,1,0,0,0,0,64,0,-1--1--1,,1|(423,244)|
+1,27,1,3,1,0,0,0,3,64,0,255-0-255,|12||0-0-0,1|(523,223)|
+1,28,8,10,1,0,0,0,3,64,0,255-0-0,|12||0-0-0,1|(142,286)|
+1,29,10,7,1,0,0,0,3,64,0,255-128-192,|12||0-0-0,1|(248,293)|
+1,30,11,10,1,0,0,0,3,64,0,255-0-0,|12||0-0-0,1|(302,326)|
+1,31,11,21,1,0,0,0,3,64,0,255-128-0,|12||0-0-0,1|(516,466)|
+1,32,11,16,1,0,0,0,3,64,0,64-128-128,|12||0-0-0,1|(281,475)|
+1,33,22,16,1,0,0,0,3,64,0,64-160-98,|12||0-0-0,1|(141,466)|
+1,34,23,21,1,0,0,0,3,64,0,255-128-0,|12||0-0-0,1|(605,484)|
+1,35,1,21,1,0,0,0,3,64,0,255-128-0,|12||0-0-0,1|(671,423)|
+10,36,proliferación,328,116,40,11,8,3,0,0,0,0,0,0
+1,37,36,3,1,0,0,0,0,64,0,-1--1--1,,1|(328,147)|
+///---\\\
+:L<%^E!@
+9:Current
+23:0
+15:0,0,0,0,0,0
+19:100,0
+27:0,
+34:0,
+5:fuerza de proliferación
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:5
+41:0
+42:1
+24:0
+25:0
+26:0
